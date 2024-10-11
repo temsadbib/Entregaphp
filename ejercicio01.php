@@ -16,7 +16,7 @@
             border: 1px solid black;
             margin: 5px;
             padding: 5px;
-            flex: 1 1 30%; /* Permite que los divs ocupen un 30% del ancho */
+            flex: 1 1 10%; /* Permite que los divs ocupen un 30% del ancho */
             box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
             background-color: lightgrey;
         }
