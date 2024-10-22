@@ -4,45 +4,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio02</title>
+    <title>Tabla de Emojis</title>
+    <style>
+
+
+        table,
+        th,
+        td,
+        tr {
+            border: 2px solid black;
+            width: 55px;
+            height: 55px;
+            margin: auto;
+        }
+
+        table {
+            margin: auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .grey {
+            background-color: grey;
+        }
+        .titulo{
+            text-align: center;
+        }
+     
+    </style>
 </head>
 
 <body>
-    <?php
-    $columnas = 10;
-    $filas    = 8;
 
+    <div class="container">
 
-    print "<table border=\"1\">\n";
-    print "  <caption>Tabla de multiplicar</caption>\n";           // Abre la tabla
-    // Crea la leyenda <caption>
-    print "  <tbody>\n";                       // Abre el cuerpo de tabla <tbody>
+        <table border="1">
+            <?php
+            
+            // Inicializamos el contador y seleccionamos un emoji aleatorio
+            $contador = 0;
+            $codigoAleatorio = rand(128512, 128591); // Selecciona un código aleatorio entre 128512 y 128591
+            echo "Emoji aleatorio:  &#$codigoAleatorio;";
+            echo '<p></p>';
+            echo '<div class="titulo">';
+            echo "Tabla de Emojis del 128512 al 128591";
+            echo '</div>';
+            echo '<tr>';
+            for ($e = 1; $e <= 10; $e++) {
+                echo '<th>' . " Columna " . $e .  '</th>';
+            }
+            echo '</tr>';
 
+            // Generar la tabla de emojis
+            for ($i = 128512; $i <= 128591; $i++) {
+                // Determinar si se debe ocultar el contador y cambiar el fondo
+                $esOcultado = $codigoAleatorio === $i;
+                $claseCelda = $esOcultado ? 'grey' : '';
+                $contadorTexto = $esOcultado ? '' : " -$contador"; 
 
-    print "    <tr>\n";                        // Abre la primera fila
-    // Crea la primera celda <th> de la primera fila (sin número)
-    for ($j = 1; $j <= $columnas; $j++) {      // Bucle 1 se ejecuta tantas veces como columnas tenga la tabla
-        print "      <th>Tabla del $j</th>\n";      // Crea las celdas <th> de la primera fila (con número)
-    }
-    print "    </tr>\n";                       // Cierra la primera fila
+                echo "<td class='emoji-box $claseCelda'> &#$i; $i $contadorTexto</td>";
 
+                $contador++;
 
-    for ($j = 1; $j <= $columnas; $j++) {         // Bucle 2 (genera el resto de filas de la tabla)
-        print "    <tr>\n";                    // Abre la fila
-        // Crea la primera celda <th> de cada fila (con número)
-        for ($i = 128512; $i <= $filas; $i++) {  // Bucle 3 se ejecuta tantas veces como columnas tenga la tabla
-            print "      <td> &#$i</td>\n";
-        }
-        print "    </tr>\n";                   // Cierra la fila
-    }
+                // Si ya hay 10 emojis en la fila, cerrar fila y abrir una nueva
+                if ($contador % 10 == 0) {
+                    echo '</tr>';
+                    if ($i < 128591) {
+                        echo '<tr>';
+                    }
+                }
+            }
 
+            echo '</tr>'; // Cerrar última fila
 
-
-    print "  </tbody>\n";                      // Cierra el cuerpo de tabla <tbody>
-    print "</table>\n";                        // Cierra la tabla
-
-
-    ?>
+            ?>
+        </table>
+        
+        <div>
+            <?php
+            echo '<p></p>';
+             // Mostrar el emoji aleatorio y su posición
+             $posicion = $codigoAleatorio - 128512; // Calcular la posición en base al código
+             echo "&#$codigoAleatorio; Está en la posición: $posicion";
+             echo '<p></p>';
+             echo "El array tiene 80 elementos";
+            ?>
+        </div>
+    </div>
 
 </body>
 
