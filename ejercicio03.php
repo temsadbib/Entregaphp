@@ -84,10 +84,11 @@
             <?php
             echo '<p></p>';
              // Mostrar el emoji aleatorio y su posición
-             $posicion = $codigoAleatorio - 128512; // Calcular la posición en base al código
+             $posicion = array_search($codigoAleatorio); // Calcular la posición en base al código
              echo "&#$codigoAleatorio; Está en la posición: $posicion";
              echo '<p></p>';
-             echo "El array tiene 80 elementos";
+             $totalelementos = count($contador)
+             echo "El array tiene  elementos $totalelementos";
             ?>
         </div>
     </div>
