@@ -87,7 +87,7 @@
              $posicion = array_search($codigoAleatorio, $array_emoji); // Calcular la posición en base al código
              echo "&#$codigoAleatorio; Está en la posición: $posicion";
              echo '<p></p>';
-             $totalelementos = count($contador)
+             $totalelementos = count($array_emoji);
              echo "El array tiene  elementos $totalelementos";
             ?>
         </div>
